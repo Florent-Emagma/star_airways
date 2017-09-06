@@ -14,7 +14,7 @@ class FlightType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numeroVol')->add('depart')->add('arrivee')->add('horaire')->add('place')->add('prix')->add('update', SubmitType::class);
+        $builder->add('depart')->add('arrivee')->add('horaire')->add('place')->add('prix')->add('update', SubmitType::class);
     }
     
     /**

@@ -64,6 +64,15 @@ class Flight
     private $prix;
 
 
+    public function __construct()
+    {
+        $char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $string = '';
+        $string .= $char[rand(0, strlen($char) - 1)];
+        $string .= rand(1000, 2000);
+        $this->numeroVol = $string;
+    }
+
     /**
      * Get id
      *

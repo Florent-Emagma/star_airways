@@ -67,7 +67,7 @@ class DefaultController extends Controller
         {
             $entityManager->flush();
             $this->addFlash('success', "Le vol a bien été modifiée");
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('admin');
         }
         return $this->render('StarBundle:Default:edit.html.twig',['form' => $form->createView()]);
     }
@@ -82,6 +82,6 @@ class DefaultController extends Controller
         $entityManager->remove($todo);
         $entityManager->flush();
         $this->addFlash('success', "Le vol a bien été supprimée");
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('admin');
     }
 }

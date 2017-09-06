@@ -26,11 +26,17 @@
                         <th>{{ flight.numeroVol }}</th>
                         <th>{{ flight.depart }}</th>
                         <th>{{ flight.arrivee }}</th>
-                        <th>{{ flight.horaire | date('H:m') }}</th>
+                        <th>{{ flight.horaire | date('H:i') }}</th>
                         <th>{{ flight.place }}</th>
                         <th>{{ flight.prix }}</th>
                         <th></th>
-                        <th></th>
+                        {% if (flight.place) == 0 %}
+                            <th>COMPLET</th>
+                        {% elseif(flight.place) <= 10 %}
+                            <th><em>{{ flight.place }} PLACES</em></th>
+                        {% else %}
+                            <th></th>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

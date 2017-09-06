@@ -20,7 +20,7 @@
                     <tr>
                         <th>{{ flight.numeroVol }}</th>
                         <th>{{ flight.depart }}/{{ flight.arrivee }}</th>
-                        <th>{{ flight.horaire | date('H:m') }}</th>
+                        <th>{{ flight.horaire | date('H:i') }}</th>
                         <th><a href="{{ path("edit", {"id": flight.id}) }}">Editer</a></th>
                         <th><a href="{{ path("delete", {"id": flight.id}) }}">Supprimer</a></th>
                     </tr>
