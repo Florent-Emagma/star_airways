@@ -53,4 +53,35 @@ class DefaultController extends Controller
             ->findAll();
         return $this->render('StarBundle:Default:admin.html.twig', ["flights" => $flights]);
     }
+
+    /**
+     * @Route("/edit/{id}", name="edit", requirements={"id"="\d+"})
+     */
+    public function editAction(Request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $todo = $entityManager->getRepository(Flight::class)->find($id);
+        $form = $this->createForm(FlightType::class, $todo);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+            $this->addFlash('success', "Le vol a bien été modifiée");
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('StarBundle:Default:edit.html.twig',['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete", requirements={"id"="\d+"})
+     */
+    public function deleteAction($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $todo = $entityManager->getRepository(Flight::class)->find($id);
+        $entityManager->remove($todo);
+        $entityManager->flush();
+        $this->addFlash('success', "Le vol a bien été supprimée");
+        return $this->redirectToRoute('home');
+    }
 }
