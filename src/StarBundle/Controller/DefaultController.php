@@ -41,4 +41,16 @@ class DefaultController extends Controller
         }
         return $this->render('StarBundle:Default:create.html.twig',['form' => $form->createView()]);
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function adminAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $flights = $entityManager
+            ->getRepository(Flight::class)
+            ->findAll();
+        return $this->render('StarBundle:Default:admin.html.twig', ["flights" => $flights]);
+    }
 }

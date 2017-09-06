@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1 class="alert alert-primary">Star Airways ! :D</h1>
-
-
     <div class="container">
         <div class="row">
-            <a href="{{ path("admin") }}" class="btn btn-danger">Admin</a>
+            <a href="{{ path("home") }}" class="btn btn-danger">Exit</a>
             <a href="{{ path("create") }}" class="btn btn-primary">New</a>
         </div>
         <br>
@@ -13,24 +11,18 @@
             <table class="table table-striped">
                 <tr>
                     <th>Numéro de vol</th>
-                    <th>Départ</th>
-                    <th>Arrivée</th>
-                    <th>Horaires</th>
-                    <th>Places</th>
-                    <th>Prix</th>
-                    <th>Info 1</th>
-                    <th>Info 2</th>
+                    <th>Vol</th>
+                    <th>Heure</th>
+                    <th>Actions</th>
+                    <th></th>
                 </tr>
                 {% for flight in flights %}
                     <tr>
                         <th>{{ flight.numeroVol }}</th>
-                        <th>{{ flight.depart }}</th>
-                        <th>{{ flight.arrivee }}</th>
+                        <th>{{ flight.depart }}/{{ flight.arrivee }}</th>
                         <th>{{ flight.horaire | date('H:m') }}</th>
-                        <th>{{ flight.place }}</th>
-                        <th>{{ flight.prix }}</th>
-                        <th></th>
-                        <th></th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
                     </tr>
                 {% endfor %}
             </table>
