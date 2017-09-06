@@ -3,7 +3,7 @@
     <h1 class="alert alert-primary">Star Airways ! :D</h1>
     <div class="container">
         <div class="row">
-            <a href="" class="btn btn-primary">New</a>
+            <a href="{{ path("create") }}" class="btn btn-primary">New</a>
         </div>
         <br>
         <div class="row">
@@ -18,14 +18,14 @@
                     <th>Info 1</th>
                     <th>Info 2</th>
                 </tr>
-                {% for vol in vols %}
+                {% for flight in flights %}
                     <tr>
-                        <th>{{ vol.numeroVol }}</th>
-                        <th>{{ vol.depart }}</th>
-                        <th>{{ vol.arrivee }}</th>
-                        <th>{{ vol.horaire | date('H:m') }}</th>
-                        <th>{{ vol.places }}</th>
-                        <th>{{ vol.prix }}</th>
+                        <th>{{ flight.numeroVol }}</th>
+                        <th>{{ flight.depart }}</th>
+                        <th>{{ flight.arrivee }}</th>
+                        <th>{{ flight.horaire | date('H:m') }}</th>
+                        <th>{{ flight.place }}</th>
+                        <th>{{ flight.prix }}</th>
                         <th></th>
                         <th></th>
                     </tr>
