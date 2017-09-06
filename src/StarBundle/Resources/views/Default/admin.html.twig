@@ -22,7 +22,7 @@
                         <th>{{ flight.depart }}/{{ flight.arrivee }}</th>
                         <th>{{ flight.horaire | date('H:i') }}</th>
                         <th><a href="{{ path("edit", {"id": flight.id}) }}">Editer</a></th>
-                        <th><a href="{{ path("delete", {"id": flight.id}) }}">Supprimer</a></th>
+                        <th><a id="del" href="{{ path("delete", {"id": flight.id}) }}">Supprimer</a></th>
                     </tr>
                 {% endfor %}
             </table>
@@ -36,4 +36,16 @@
         </div>
     </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    var del = document.querySelector("#del");
+    del.addEventListener("click",function(e){
+        if(confirm("Valider ?") == true) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    } , false);
+</script>
 {% endblock %}

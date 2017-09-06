@@ -4,7 +4,6 @@ namespace StarBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use StarBundle\Validator\Constraints\NotEqualProperty as StarAssert;
 
 /**
  * Flight
@@ -32,9 +31,6 @@ class Flight
 
     /**
      * @var string
-     * @StarAssert\NotEqualProperty(
-     *     compareProperty = "arrivee"
-     * )
      * @ORM\Column(name="depart", type="string", length=255)
      */
     private $depart;
@@ -48,7 +44,9 @@ class Flight
 
     /**
      * @var \DateTime
-     *
+     * @Assert\Range(
+     *     min = "06:00:00",
+     *     max = "22:00:00",
      * )
      * @ORM\Column(name="horaire", type="datetime")
      */

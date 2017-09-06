@@ -38,6 +38,8 @@ class DefaultController extends Controller
             $this->addFlash('success', "Le vol a bien été ajouté");
 
             return $this->redirectToRoute('home');
+        } else {
+            dump($form->getData());die;
         }
         return $this->render('StarBundle:Default:create.html.twig',['form' => $form->createView()]);
     }
