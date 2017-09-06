@@ -1,1 +1,44 @@
-Hello World!
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1 class="alert alert-primary">Star Airways ! :D</h1>
+    <div class="container">
+        <div class="row">
+            <a href="" class="btn btn-primary">New</a>
+        </div>
+        <br>
+        <div class="row">
+            <table class="table table-striped">
+                <tr>
+                    <th>Numéro de vol</th>
+                    <th>Départ</th>
+                    <th>Arrivée</th>
+                    <th>Horaires</th>
+                    <th>Places</th>
+                    <th>Prix</th>
+                    <th>Info 1</th>
+                    <th>Info 2</th>
+                </tr>
+                {% for vol in vols %}
+                    <tr>
+                        <th>{{ vol.numeroVol }}</th>
+                        <th>{{ vol.depart }}</th>
+                        <th>{{ vol.arrivee }}</th>
+                        <th>{{ vol.horaire | date('H:m') }}</th>
+                        <th>{{ vol.places }}</th>
+                        <th>{{ vol.prix }}</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="row">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
