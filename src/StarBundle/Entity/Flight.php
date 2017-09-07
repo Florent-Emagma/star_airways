@@ -32,9 +32,7 @@ class Flight
 
     /**
      * @var string
-     * @StarAssert\NotEqualProperty(
-     *     compareProperty = "arrivee"
-     * )
+     *
      * @ORM\Column(name="depart", type="string", length=255)
      */
     private $depart;
@@ -67,8 +65,8 @@ class Flight
      * @Assert\Range(
      *      min = 100,
      *      max = 300,
-     *      minMessage = "You must be at least {{ limit }}cm tall to enter",
-     *      maxMessage = "You cannot be taller than {{ limit }}cm to enter"
+     *      minMessage = "Votre prix doit être supérieur à {{ limit }}",
+     *      maxMessage = "Votre prix doit être inférieur à {{ limit }}"
      * )
      *
      * @ORM\Column(name="prix", type="integer")
@@ -270,5 +268,15 @@ class Flight
         $string .= $char[rand(0, strlen($char) - 1)];
         $string .= rand(1000, 2000);
         return $string;
+    }
+
+    /**
+     * Test with lowercase
+     *
+     * @Assert\IsTrue(message = "Le départ doit être différent de l'arrivée")
+     */
+    public function isDepartArriveeValid()
+    {
+        return strtolower($this->getArrivee()) != strtolower($this->getDepart());
     }
 }
