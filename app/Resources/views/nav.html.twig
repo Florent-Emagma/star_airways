@@ -1,0 +1,11 @@
+{% block header %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path("home") }}">Star Airways</a>
+        {% if(isAdmin is defined and isAdmin == true) %}
+            <a href="{{ path("home") }}" class="btn btn-danger">Exit</a>
+        {% else %}
+            <a href="{{ path("admin") }}" class="btn btn-secondary">Admin</a>
+        {% endif %}
+    </nav>
+    <br>
+{% endblock %}
