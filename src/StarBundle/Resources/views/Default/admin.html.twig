@@ -1,12 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1 class="alert alert-primary">Star Airways ! :D</h1>
     <div class="container">
-        <div class="row">
-            <a href="{{ path("home") }}" class="btn btn-danger">Exit</a>
-            <a href="{{ path("create") }}" class="btn btn-primary">New</a>
-        </div>
-        <br>
         <div class="row">
             <table class="table table-striped">
                 <tr>
@@ -27,6 +21,11 @@
                 {% endfor %}
             </table>
         </div>
+        {% if(isAdmin is defined and isAdmin == true) %}
+            <div class="row">
+                <a href="{{ path("create") }}" class="btn btn-primary">New</a>
+            </div>
+        {% endif %}
         <div class="row">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">

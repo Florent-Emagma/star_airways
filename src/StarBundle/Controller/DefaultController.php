@@ -18,7 +18,7 @@ class DefaultController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $flights = $entityManager
             ->getRepository(Flight::class)
-            ->findAll();
+            ->findBy([], ['horaire' => 'ASC']);
         return $this->render('StarBundle:Default:index.html.twig', ["flights" => $flights]);
     }
 
@@ -38,10 +38,8 @@ class DefaultController extends Controller
             $this->addFlash('success', "Le vol a bien été ajouté");
 
             return $this->redirectToRoute('home');
-        } else {
-            dump($form->getData());die;
         }
-        return $this->render('StarBundle:Default:create.html.twig',['form' => $form->createView()]);
+        return $this->render('StarBundle:Default:create.html.twig',['form' => $form->createView(), "isAdmin" => true]);
     }
 
     /**
@@ -52,8 +50,8 @@ class DefaultController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $flights = $entityManager
             ->getRepository(Flight::class)
-            ->findAll();
-        return $this->render('StarBundle:Default:admin.html.twig', ["flights" => $flights]);
+            ->findBy([], ['horaire' => 'ASC']);
+        return $this->render('StarBundle:Default:admin.html.twig', ["flights" => $flights, "isAdmin" => true]);
     }
 
     /**
@@ -71,7 +69,7 @@ class DefaultController extends Controller
             $this->addFlash('success', "Le vol a bien été modifiée");
             return $this->redirectToRoute('admin');
         }
-        return $this->render('StarBundle:Default:edit.html.twig',['form' => $form->createView()]);
+        return $this->render('StarBundle:Default:edit.html.twig',['form' => $form->createView(), "isAdmin" => true]);
     }
 
     /**
